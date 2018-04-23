@@ -1,0 +1,3 @@
+*.bat
+excludes.txt
+uploadexcls.txt

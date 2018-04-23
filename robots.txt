@@ -1,0 +1,11 @@
+# robots.txt for our website
+#
+User-agent: *
+#Disallow: /somepage/foo.html
+Disallow: /cgi-bin/
+Disallow: /routerstats/
+Disallow: /base/
+Disallow: /locadm/
+Disallow: /wordpress/
+Disallow: /base/
+Disallow: /base/

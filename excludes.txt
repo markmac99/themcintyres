@@ -1,0 +1,8 @@
+planetgraphs/*
+astro/mpcdata/*
+weather/*
+ipcam/motion/*
+munin/*
+meteors/*
+mymrtg/*
+.bash_history

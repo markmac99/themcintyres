@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0062)http://www.interstice.com/~sdattalo/technical/theory/sqrt.html -->
+<HTML><HEAD><TITLE>SQUARE ROOT THEORY</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 5.50.4916.2300" name=GENERATOR></HEAD>
+<BODY>
+<H1 align=center>SQUARE ROOT THEORY</H1>
+<P></P>
+<P>Here's a collection of a couple of algorithms that can be used to find the 
+square root of a number. </P>
+<H3>1. Iterative Algorithm</H3>
+<P>Up until some time in the 1960's, school children were taught a really clever 
+algorithm for taking the square root of an arbitrarily large number. The 
+technique is quite similar to long division. Here's how it works for decimal 
+square roots.</P>
+<P>a) Starting at the decimal point pair off the digits.</P>
+<P>b) Find the largest square that subtracts from the left-most pair and still 
+yields a positive result. This is the remainder that will be used in the next 
+step and note that it is only two (or one) digits. The square root of this 
+largest square is the first digit of the square root of the whole number. </P>
+<P>c) Concatenate the next pair of digits with the remainder.</P>
+<P>d) Multiply the square root devloped so-far by 20. Note that the least 
+significant digit is a zero.</P>
+<P>e) The next digit in the square root is the one that satisfies the 
+inequality:</P>
+<P>(20 * current + digit) * digit &lt;= remainder</P>
+<P>where "current" is the current square root and "digit" is the next digit 
+produced by the algorithm. </P>
+<P>f) Form the new positive remainder by subtracting the left side of the 
+equation in the previous step from the right side.</P>
+<P>g) go to step (c)</P>
+<P>As an example, suppose we want to find the square root of 31415.92653:</P>
+<P>a) Pair off the digits</P><PRE>3 14 15.92 65 3
+ ^  ^  ^  ^  ^
+</PRE>
+<P>b) The left most pair is 03 and the largest square that subtracts from it is 
+1. And since the square root of 1 is 1, the first digit of our answer will be 
+1.</P>
+<P>c-g)</P><PRE>      1  7  7. 2
+   -------------
+   ) 03 14 15.92
+     -1
+     --
+27 |  2 14       1*20 = 20
+*7=   1 89       (20+x)*x &lt; 214 ==&gt; x=7
+      ----
+ 347 |  25 15    17*20 = 340
+  *7=   24 29    (340+x)*x &lt; 2515 ==&gt; x=7
+        -----
+  3542 |   86 92    177*20 = 3540
+    *2=    70 84    (3540+x)*x &lt; 8692 ==&gt; x=2
+           -----
+           16 08
+</PRE>
+<P>The reason this works is easy to show. We can rewrite the number we wish to 
+root:</P><PRE>           2n           2(n-1)
+N = A  * 10   + A   * 10      + . . . + A
+     n           n-1                     1
+</PRE>
+<P>(Not finished...)</P>
+<P></P>
+<H4>Binary Square Roots</H4>
+<P>In general, the procedure consists of taking the square root developed so 
+far, appending 01 to it and subtracting it, properly shifted, from the current 
+remainder. The 0 in 01 corresponds to mutliplying by 2; the 1 is a new trial 
+bit. If the resulting remainder is positive, the new root bit developed is truly 
+1; if the remainder is negative, the new bit developed is 0 and the remainder 
+must be restored (thus the name) by adding the quantity just subtracted.</P>
+<P></P>
+<P>The example he gives takes the square root of 01011111</P>
+<P></P><PRE>        1  0  0  1 .
+   -----------------
+   ) 01 01 11 11 . 00
+     -1
+     ---
+     00 01  &lt;--- positive: first bit is a 1
+     -1 01
+     -----
+     11 00  &lt;--- negative: 2nd bit is a 0
+     +1 01  &lt;--- restore the wrong guess
+    ------
+     00 01 11
+       -10 01
+    ---------
+     11 11 10  &lt;--- negative: 3rd bit is a zero
+       +10 01  &lt;--- restore the wrong guess
+    ---------
+        01 11 11
+        -1 00 01
+       ---------
+         0 11 10  &lt;--- positive: 4th bit is a one
+</PRE>
+<P>etc...</P>
+<P>The other method does not restore the subtraction if the result was negative. 
+Instead, it appends a 11 to the root developed so far and on the next iteration 
+it performs an addition. If the addition causes an overflow, then on the next 
+iteration you go back to the subtraction mode. Before I botch the explanation 
+much further, let me quote Flores again:</P>
+<P>As long as the remainder is negative, we proceed as in the previous section; 
+we enter a 1 in the corresponding root bit being developed; we append 01 to this 
+number; we shift it the correct number of times and _subtract_ it from the 
+previous remainder.</P>
+<P>When the remainder goes negative, we do not restore as in the previous 
+section. First we enter a 0 as the next root bit developed. To this we append 
+11. This result is shifted left the proper number of times and "added" to the 
+present remainder.</P>
+<P></P>
+<P>Again, the same example:</P><PRE>      1  0  0  1 .
+   -----------------
+   ) 01 01 11 11 . 00
+     -1
+     ---
+     00 01  &lt;--- positive: first bit is a 1
+     -1 01  &lt;--- Developed root is "1"; appended 01; subtract
+     -----
+     11 00 11  &lt;--- negative: 2nd bit is a 0
+       +10 11  &lt;--- Developed root is "10"; append 11 and add.
+    ---------
+     11 11 10 11  &lt;--- positive (i.e. didn't cause overflow): 3rd bit is a 0
+         1 00 11  &lt;--- Developed root is "100"; append 11 and add
+    ---------
+   1 00 00 11 10  &lt;--- Overflow: 4th bit is a one
+</PRE>
+<P></P>
+<P>2. Newton's Method</P>
+<P></P>
+<P>Here's a <A 
+href="http://www.interstice.com/~sdattalo/technical/software/pic/picsqrt.html">square 
+root routine</A> implemented in a PIC. And here's more <A 
+href="http://www.interstice.com/~sdattalo/technical/software/software.html">software</A>.</P>
+<P><A href="http://www.interstice.com/~sdattalo/">BACK HOME</A></P>
+<P>
+<HR align=left width="100%">
+
+<P></P>
+<ADDRESS>This page is maintained by <A 
+href="http://www.interstice.com/~sdattalo">Scott Dattalo</A> with the help of <A 
+href="http://www.salford.ac.uk/docs/depts/iti/staff/gsc/htmlauth/summary">HTML 
+Author</A>. You can reach me at home: <A 
+href="mailto:sdattalo@interstice.com">sdattalo@interstice.com</A> or at work: <A 
+href="mailto:sdattalo@unix.sri.com">sdattalo@unix.sri.com</A></ADDRESS>
+<ADDRESS>Last modified on 03Nov96.</ADDRESS>
+<P></P></BODY></HTML>

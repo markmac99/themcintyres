@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html><head>
+<link rel="icon" href="/favicon_local.ico" />
+<link rel="shortcut icon" href="/favicon_local.ico" />
+
+<title>Our Homepage</title>
+
+</head>
+<body style="" topmargin="5" leftmargin="5" background="sky.jpg" lang="EN-GB" link="#000099" text="#ffff00" vlink="#000099">
+
+<p style="text-align: center;" align="center"><span style="font-size: 24pt;"><font color="#ffff00">Our Homepage</font></span></p>
+
+<form action="https://www.streetmap.co.uk/newsearch.srf?" method="get" enctype="application/x-www-form-urlencoded">
+    <p style="text-align: center;" align="center"><span style="font-size: 13.5pt;">Streetmap Lookup </span><input size="31" name="name" id="Text1" type="text"><input name="Submit1" value="Search" id="Submit1" action="https://www.streetmap.co.uk/newsearch.srf?" method="GET" type="submit"></p>
+</form>
+
+<form action="https://www.google.co.uk/search" method="get" enctype="application/x-www-form-urlencoded">
+    <p style="text-align: center;" align="center"><span style="font-size: 13.5pt;">Websearch </span><input size="55" name="q" type="text"><input name="btnG" value="Google Search" action="https://www.google.com/search" method="GET" type="submit"> </p>
+</form>
+
+<div align="center">
+  <center>
+
+<table border="0" cellpadding="0" width="368">
+    <tbody>
+<tr>
+        <td style="padding: 0.75pt;" align="center" height="1" width="168">
+          <p align="center"><a href="https://www.metcheck.com/HOBBIES/astronomy_forecast.asp?location=Oxford&locationID=57055">Astro Weather </a></p>
+        </td>
+        <td style="padding: 0.75pt;" align="center" height="1" width="263"><p align="center"><a href="TrainTimes/Local_Amenities.htm">Local Services</a></p>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 0.75pt;" align="center" width="95">
+          <p><a href="/av/">Our Photos</a></p>
+        </td>
+        <td style="padding: 0.75pt;" align="center" width="119"><p><a href="https://finance.google.com/finance?q=LON:RBS">RBS Share Price</a>
+        </p></td>
+    </tr>
+    <tr>
+        <td style="padding: 0.75pt;" align="center" width="119"><p><a href="stats.html">
+            Admin</a></p></td>
+        <td style="padding: 0.75pt;" align="center" width="114"><p><a href="weather">
+            Weather Station </a></p></td>
+    </tr>
+    <tr>
+        <td style="padding: 0.75pt;" align="center" width="119"><p><a href="planetgraphs/">
+            Planetary data</a></p></td>
+        <td style="padding: 0.75pt;" align="center" width="119"><p> 
+	<a href="av/astro">Astro Howtos and docs</a></p>
+	</td>
+    </tr>
+  </tbody></table><br></center>
+</div>
+
+<div align="center">
+<table>
+<tr>
+<td>
+<a href="https://clearoutside.com/forecast/51.88/-1.31"><img src="https://clearoutside.com/forecast_image_large/51.88/-1.31/forecast.png" /></a>
+</td>
+</tr></table>
+</center></div>
+
+</body></html>
